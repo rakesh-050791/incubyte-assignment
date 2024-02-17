@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is designed to flexibly parse and sum a string of numbers with configurable delimiters, while enforcing rules against negative numbers and ignoring numbers greater than 1000.
 
-Things you may want to cover:
+> Important Files to look into:
 
-* Ruby version
+* Models/string_calculator.rb
 
-* System dependencies
+* Specs/Models/string_calculator_spec.rb
 
-* Configuration
+> To run the test cases
 
-* Database creation
+```rb
+    bundle exec rspec OR
+    rspec spec/models/string_calculator_spec.rb
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
