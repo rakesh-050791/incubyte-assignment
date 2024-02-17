@@ -37,5 +37,25 @@ RSpec.describe StringCalculator, type: :model do
         expect(StringCalculator.add("1000,2")).to eq(1002)
       end
     end
+
+    context "with new lines between numbers" do
+      it "handles new lines as delimiters" do
+        expect(StringCalculator.add("1\n2,3")).to eq(6)
+      end
+    end
+    
+    context "with custom delimiter" do
+      it "supports custom single character delimiter" do
+        expect(StringCalculator.add("//;\n1;2")).to eq(3)
+      end
+    
+      it "supports custom delimiter of any length" do
+        expect(StringCalculator.add("//[***]\n1***2***3")).to eq(6)
+      end
+    
+      it "supports multiple custom delimiters" do
+        expect(StringCalculator.add("//[*][%]\n1*2%3")).to eq(6)
+      end
+    end
   end
 end
