@@ -14,14 +14,27 @@ class StringCalculator < ApplicationRecord
         negatives = numbers_array.select { |n| n < 0 }
     
         raise "negatives not allowed: #{negatives.join(", ")}" if negatives.any?
-    
-        numbers_array.reject { |n| n > 1000 }.sum
+        
+        if delimiters.include?("^")
+          numbers_array.reject { |n| n > 1000 }.reduce(1, :*)
+        else
+          numbers_array.reject { |n| n > 1000 }.sum
+        end
     end
 
     private
 
     def self.extract_delimiters(delimiter_section)
-        delimiter_section[2..-1].scan(/\[?(.*?)\]?/).flatten
+      # binding.break
+      # delimiter_section[2..-1].scan(/\[?(.*?)\]?/).flatten
+
+      delimiter_section = delimiter_section[2..-1]
+
+      if delimiter_section.start_with?("[")
+        delimiter_section = delimiter_section.scan(/\[?(.*?)\]?/).flatten
+      else
+        delimiter_section = [delimiter_section]
+      end
     end
 
     def self.split_numbers(numbers, delimiters)

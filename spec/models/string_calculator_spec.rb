@@ -57,5 +57,15 @@ RSpec.describe StringCalculator, type: :model do
         expect(StringCalculator.add("//[*][%]\n1*2%3")).to eq(6)
       end
     end
+
+    context "when delimiter is ^" do
+      it "multiplies the numbers" do
+        expect(StringCalculator.add("//^\n1^3^3")).to eq(9)
+      end
+    end
   end
 end
+
+# If the delimiter is ^ then instead of sum, do multiplication
+# string_cal = double(StringCalculator)
+# expect(StringCalculator.add). to return(xx)
